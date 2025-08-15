@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Do You Love Me</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #fff0f5;
+      overflow: hidden;
+      margin: 0;
+      padding-top: 100px;
+    }
+
+    #question, #response, #followUp, #finalMessage {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+    }
+
+    #yesBtn {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #d3d3d3;
+      color: black;
+    }
+
+    .optionBtn {
+      background-color: #ffe4e1;
+      color: #333;
+    }
+
+    #heart {
+      font-size: 80px;
+      color: red;
+      display: none;
+      animation: pulse 1s infinite;
+      margin-top: 20px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .petal {
+      position: absolute;
+      top: -50px;
+      font-size: 30px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    #surprise {
+      font-size: 20px;
+      color: #800080;
+      margin-top: 20px;
+    }
+
+    #discordBtn {
+      display: none;
+      background-color: #5865F2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 18px;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+
+    iframe {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe width="0" height="0" src="https://www.youtube.com/embed/PUv0cQ5lWjQ?autoplay=1&loop=1&playlist=PUv0cQ5lWjQ" frameborder="0" allow="autoplay"></iframe>
+
+  <h1>Hey ARPITA ??</h1>
+  <p id="question">Do you love me, from RUDRA</p>
+  <button id="yesBtn" onclick="answerYes()">Yes ??</button>
+  <button id="noBtn" onclick="answerNo()">No ??</button>
+
+  <p id="response" style="display:none;">Really? You don’t love me</p>
+  <p id="followUp" style="display:none;">But I love you…</p>
+
+  <div id="options" style="display:none;">
+    <button class="optionBtn" id="fuckBtn" onclick="chooseOption('fuck')">Fuck off</button>
+    <button class="optionBtn" id="okBtn" onclick="chooseOption('ok')">Ok</button>
+    <button class="optionBtn" id="loveBtn" onclick="chooseOption('love')">Love you too</button>
+    <button class="optionBtn" id="noneBtn" onclick="chooseOption('none')">None of these</button>
+  </div>
+
+  <p id="finalMessage" style="display:none;">Awww, I knew that ??</p>
+  <div id="heart">??</div>
+  <p id="surprise"></p>
+  <a id="discordBtn" href="https://discord.com" target="_blank">Call Me on Discord: <strong>5uck.exe</strong> ??</a>
+
+  <script>
+    let noCount = 0;
+
+    function answerYes() {
+      document.getElementById("question").style.display = "none";
+      document.getElementById("yesBtn").style.display = "none";
+      document.getElementById("noBtn").style.display = "none";
+      document.getElementById("response").style.display = "none";
+      document.getElementById("followUp").style.display = "none";
+      document.getElementById("options").style.display = "none";
+      document.getElementById("finalMessage").style.display = "block";
+      document.getElementById("heart").style.display = "block";
+      document.getElementById("surprise").textContent = "Ok, if you love me then call me on Discord ??";
+      document.getElementById("discordBtn").style.display = "inline-block";
+      startPetalRain();
+
+      setTimeout(() => {
+        document.getElementById("heart").style.display = "none";
+      }, 3000);
+    }
+
+    function answerNo() {
+      noCount++;
+      if (noCount === 1) {
+        document.getElementById("response").style.display = "block";
+      } else if (noCount === 2) {
+        document.getElementById("followUp").style.display = "block";
+        document.getElementById("options").style.display = "block";
+      }
+    }
+
+    function chooseOption(choice) {
+      if (choice === 'fuck') {
+        document.getElementById("surprise").textContent = "I didn’t expect that from you… ??";
+        document.getElementById("fuckBtn").style.opacity = "0.3";
+        document.getElementById("fuckBtn").style.pointerEvents = "none";
+
+        document.getElementById("okBtn").style.display = "inline-block";
+        document.getElementById("loveBtn").style.display = "inline-block";
+        document.getElementById("noneBtn").style.display = "inline-block";
+
+        startRain();
+
+        let sadAudio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3");
+        sadAudio.play();
+      } else if (choice === 'none') {
+        document.getElementById("surprise").textContent = "Whyyyyyy ??";
+        document.getElementById("noneBtn").style.display = "none";
+      } else if (choice === 'ok') {
+        document.getElementById("surprise").textContent = "Why you don’t love me? ??";
+        document.getElementById("okBtn").style.display = "none";
+      } else if (choice === 'love') {
+        answerYes();
+      }
+    }
+
+    function startPetalRain() {
+      for (let i = 0; i < 50; i++) {
+        let petal = document.createElement("div");
+        petal.className = "petal";
+        petal.textContent = "??";
+        petal.style.left = Math.random() * window.innerWidth + "px";
+        petal.style.animationDuration = (2 + Math.random() * 3) + "s";
+        petal.style.color = "#ff69b4";
+        document.body.appendChild(petal);
+
+        setTimeout(() => {
+          petal.remove();
+        }, 5000);
+      }
+    }
+
+    function startRain() {
+      for (let i = 0; i < 100; i++) {
+        let drop = document.createElement("div");
+        drop.className = "petal";
+        drop.textContent = "??";
+        drop.style.left = Math.random() * window.innerWidth + "px";
+        drop.style.animationDuration = (2 + Math.random() * 3) + "s";
+        drop.style.color = "#87CEFA";
+        document.body.appendChild(drop);
+
+        setTimeout(() => {
+          drop.remove();
+        }, 5000);
+      }
+    }
+  </script>
+</body>
+</html>
